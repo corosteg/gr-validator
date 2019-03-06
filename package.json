@@ -1,0 +1,28 @@
+{
+  "name": "gr-validator",
+  "version": "1.0.0",
+  "description": "",
+  "main": "gr-valitador.js",
+  "scripts": {
+    "pretest": "eslint .",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Laboratoria/gr-validator.git"
+  },
+  "author": "corosteg",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Laboratoria/gr-validator/issues"
+  },
+  "homepage": "https://github.com/Laboratoria/gr-validator#readme",
+  "dependencies": {
+    "url": "^0.11.0"
+  },
+  "devDependencies": {
+    "eslint": "^4.19.1",
+    "eslint-config-airbnb-base": "^12.1.0",
+    "eslint-plugin-import": "^2.12.0"
+  }
+}

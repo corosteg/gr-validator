@@ -1,0 +1,11 @@
+.DS_Store
+*.swp
+*.log
+.firebaserc
+coverage/
+data/
+!test/data
+node_modules/
+functions/package-lock.json
+functions/coverage
+package-lock.json
