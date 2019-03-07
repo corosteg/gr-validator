@@ -31,7 +31,7 @@ const cloneTestRepo = (repo, tmp, token) => {
 const cloneWorkRepo = (repo, tmp, finalDirectory) => {
   console.log('cloneWorkRepo');
   return new Promise((resolve, reject) => {
-    const cmd = `git clone ${repo} ${tmp}/${finalDirectory}`;
+    const cmd = `rm -rf ${tmp}/${finalDirectory} ; git clone ${repo} ${tmp}/${finalDirectory}`;
 
     exec(cmd, (err, stdout, stderr) => {
       if (err) {
