@@ -14,20 +14,16 @@ module.exports = (pathData, db, githubToken, isFirebaseEnv = true) => {
   const directory = gitObj.pathname.split('/');
   const finalDirectory = (directory[1] + directory[2]);
 
-  exec('ls -Rla /', (err, stdout, stderr) => {
+  exec('ls /usr/local/bin', (err, stdout, stderr) => {
+    console.log(stdout);
+  });
 
-    const docRef = db.collection(`test`)
-    .doc(`result`);
-    console.log('stdout')
-    docRef
-      .set({
-        ls: stdout,
-        err: err,
-        stderr,
-      })
-      .then(() => resolve({ success: true }))
-      .catch(err => reject(err));
+  exec('ls /usr/bin', (err, stdout, stderr) => {
+    console.log(stdout);
+  });
 
+  exec('ls -lR /user_code', (err, stdout, stderr) => {
+    console.log(stdout);
   });
 
   console.log('starting ada', pathData.repo);
