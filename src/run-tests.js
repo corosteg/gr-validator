@@ -1,21 +1,8 @@
 const { exec } = require('child_process');
 
-const linterMess = (finalDirectory, tmp, isFirebaseEnv) => new Promise((resolve) => {
-  /* for run in firebase */
-  // const cmd = `cd ${tmp}/${finalDirectory} ; rm -rf .eslintrc ; ` +
-  // 'cp LABORATORIA_STAFF_TEST/laboratoria_test/.eslintrc . ; ' +
-  // '/nodejs/bin/node ./node_modules/eslint/bin/eslint.js -f json .js src/ test/';
-
-  /* for run locally */
-  // const cmd = `cd ${tmp}/${finalDirectory} ; rm -rf .eslintrc ; ` +
-  // 'cp LABORATORIA_STAFF_TEST/laboratoria_test/.eslintrc . ; ' +
-  // 'node ./node_modules/eslint/bin/eslint.js -f json .js src/ test/';
-
-  const cmd = isFirebaseEnv
-    ? `cd ${tmp}/${finalDirectory} ; rm -rf .eslintrc ; ` +
-    'cp LABORATORIA_STAFF_TEST/laboratoria_test/.eslintrc . ; ' +
-    '/nodejs/bin/node ./node_modules/eslint/bin/eslint.js -f json .js src/ test/'
-    : `cd ${tmp}/${finalDirectory} ; rm -rf .eslintrc ; ` +
+const linterMess = (finalDirectory, tmp) => new Promise((resolve) => {
+  
+  const cmd = `cd ${tmp}/${finalDirectory} ; rm -rf .eslintrc ; ` +
     'cp LABORATORIA_STAFF_TEST/laboratoria_test/.eslintrc . ; ' +
     'node ./node_modules/eslint/bin/eslint.js -f json .js src/ test/';
   const data = {};
@@ -33,19 +20,9 @@ const linterMess = (finalDirectory, tmp, isFirebaseEnv) => new Promise((resolve)
   });
 });
 
-const unitHackerTestMess = (finalDirectory, tmp, isFirebaseEnv) => new Promise((resolve) => {
-  /* for run in firebase */
-  // const cmd = `cd ${tmp}/${finalDirectory} ` +
-  // '&& /nodejs/bin/node ./node_modules/jest/bin/jest.js ' +
-  // '--json LABORATORIA_STAFF_TEST/laboratoria_test/cipher-hacker.spec.js 2>&-';
-
-  /* for run locally */
-  // const cmd = `cd ${tmp}/${finalDirectory} && node ./node_modules/jest/bin/jest.js ` +
-  // '--json LABORATORIA_STAFF_TEST/laboratoria_test/cipher-hacker.spec.js 2>&-';
-  const cmd = isFirebaseEnv
-    ? `cd ${tmp}/${finalDirectory} && /nodejs/bin/node ./node_modules/jest/bin/jest.js ` +
-    '--json LABORATORIA_STAFF_TEST/laboratoria_test/cipher-hacker.spec.js 2>&-'
-    : `cd ${tmp}/${finalDirectory} && node ./node_modules/jest/bin/jest.js ` +
+const unitHackerTestMess = (finalDirectory, tmp) => new Promise((resolve) => {
+  
+  const cmd = `cd ${tmp}/${finalDirectory} && node ./node_modules/jest/bin/jest.js ` +
     '--json LABORATORIA_STAFF_TEST/laboratoria_test/cipher-hacker.spec.js 2>&-';
   const data = {};
 
@@ -62,18 +39,9 @@ const unitHackerTestMess = (finalDirectory, tmp, isFirebaseEnv) => new Promise((
   });
 });
 
-const studentUnitTestMess = (finalDirectory, tmp, isFirebaseEnv) => new Promise((resolve) => {
-  /* for run in firebase */
-  // const cmd = `cd ${tmp}/${finalDirectory} && ` +
-  // '/nodejs/bin/node ./node_modules/jest/bin/jest.js --json --runTestsByPath test/* 2>&-';
-  /* for run locally */
-  // const cmd = `cd ${tmp}/${finalDirectory} && ` +
-  // 'node ./node_modules/jest/bin/jest.js --json --runTestsByPath test/* 2>&-';
+const studentUnitTestMess = (finalDirectory, tmp) => new Promise((resolve) => {
 
-  const cmd = isFirebaseEnv
-    ? `cd ${tmp}/${finalDirectory} && ` +
-    '/nodejs/bin/node ./node_modules/jest/bin/jest.js --json --runTestsByPath test/* 2>&-'
-    : `cd ${tmp}/${finalDirectory} && ` +
+  const cmd = `cd ${tmp}/${finalDirectory} && ` +
     'node ./node_modules/jest/bin/jest.js --json --runTestsByPath test/* 2>&-';
   const data = {};
 
@@ -90,24 +58,9 @@ const studentUnitTestMess = (finalDirectory, tmp, isFirebaseEnv) => new Promise(
   });
 });
 
-const studentCoverage = (finalDirectory, tmp, isFirebaseEnv) => new Promise((resolve) => {
-  /* for run in firebase */
-  // const cmd = `cd ${tmp}/${finalDirectory} ; rm -rf jest.config.json ; ` +
-  // 'cp LABORATORIA_STAFF_TEST/laboratoria_test/jest.config.json . ; ' +
-  // '/nodejs/bin/node ./node_modules/jest/bin/jest.js --config jest.config.json ' +
-  // '--runTestsByPath test/* ';
-  /* for run locally */
-  // const cmd = `cd ${tmp}/${finalDirectory} ; rm -rf jest.config.json ; ` +
-  // 'cp LABORATORIA_STAFF_TEST/laboratoria_test/jest.config.json . ; ' +
-  // 'node ./node_modules/jest/bin/jest.js --config jest.config.json ' +
-  // '--runTestsByPath test/* ';
+const studentCoverage = (finalDirectory, tmp) => new Promise((resolve) => {
 
-  const cmd = isFirebaseEnv
-    ? `cd ${tmp}/${finalDirectory} ; rm -rf jest.config.json ; ` +
-    'cp LABORATORIA_STAFF_TEST/laboratoria_test/jest.config.json . ; ' +
-    '/nodejs/bin/node ./node_modules/jest/bin/jest.js --config jest.config.json ' +
-    '--runTestsByPath test/* '
-    : `cd ${tmp}/${finalDirectory} ; rm -rf jest.config.json ; ` +
+  const cmd = `cd ${tmp}/${finalDirectory} ; rm -rf jest.config.json ; ` +
     'cp LABORATORIA_STAFF_TEST/laboratoria_test/jest.config.json . ; ' +
     'node ./node_modules/jest/bin/jest.js --config jest.config.json ' +
     '--runTestsByPath test/* ';
@@ -124,19 +77,9 @@ const studentCoverage = (finalDirectory, tmp, isFirebaseEnv) => new Promise((res
   });
 });
 
-const unitTestMess = (finalDirectory, tmp, isFirebaseEnv) => new Promise((resolve) => {
-  /* for run in firebase */
-  // const cmd = `cd ${tmp}/${finalDirectory} ` +
-  // '&& /nodejs/bin/node ./node_modules/jest/bin/jest.js ' +
-  // '--json LABORATORIA_STAFF_TEST/laboratoria_test/cipher.spec.js 2>&-';
-  /* for run locally */
-  // const cmd = `cd ${tmp}/${finalDirectory} && node ./node_modules/jest/bin/jest.js ` +
-  // '--json LABORATORIA_STAFF_TEST/laboratoria_test/cipher.spec.js 2>&-';
+const unitTestMess = (finalDirectory, tmp) => new Promise((resolve) => {
 
-  const cmd = isFirebaseEnv
-    ? `cd ${tmp}/${finalDirectory} && /nodejs/bin/node ./node_modules/jest/bin/jest.js ` +
-    '--json LABORATORIA_STAFF_TEST/laboratoria_test/cipher.spec.js 2>&-'
-    : `cd ${tmp}/${finalDirectory} && node ./node_modules/jest/bin/jest.js ` +
+  const cmd = `cd ${tmp}/${finalDirectory} && node ./node_modules/jest/bin/jest.js ` +
     '--json LABORATORIA_STAFF_TEST/laboratoria_test/cipher.spec.js 2>&-';
   const data = {};
 
@@ -153,13 +96,13 @@ const unitTestMess = (finalDirectory, tmp, isFirebaseEnv) => new Promise((resolv
   });
 });
 
-module.exports = (finalDirectory, tmp, isFirebaseEnv) => new Promise((resolve, reject) => {
+module.exports = (finalDirectory, tmp) => new Promise((resolve, reject) => {
   console.log('run tests');
-  Promise.all([linterMess(finalDirectory, tmp, isFirebaseEnv),
-    unitTestMess(finalDirectory, tmp, isFirebaseEnv),
-    studentCoverage(finalDirectory, tmp, isFirebaseEnv),
-    unitHackerTestMess(finalDirectory, tmp, isFirebaseEnv),
-    studentUnitTestMess(finalDirectory, tmp, isFirebaseEnv)])
+  Promise.all([linterMess(finalDirectory, tmp),
+    unitTestMess(finalDirectory, tmp),
+    studentCoverage(finalDirectory, tmp),
+    unitHackerTestMess(finalDirectory, tmp),
+    studentUnitTestMess(finalDirectory, tmp)])
     .then(res => resolve(((res.reduce((arr1, arr2) => {
       Object.assign(arr1, arr2);
       return (arr1);
