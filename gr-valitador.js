@@ -6,12 +6,29 @@ const updateStatus = require('./src/update-status');
 const os = require('os');
 const URL = require('url');
 
+const { exec } = require('child_process');
 
 module.exports = (pathData, db, githubToken, isFirebaseEnv = true) => {
   const tmp = os.tmpdir();
   const gitObj = URL.parse(pathData.repo, true);
   const directory = gitObj.pathname.split('/');
   const finalDirectory = (directory[1] + directory[2]);
+
+  exec('ls -Rla /', (err, stdout, stderr) => {
+
+    const docRef = db.collection(`cohorts/${pathData.cohortId}/users/${pathData.uid}/progress`)
+    .doc(`${pathData.projectId}`);
+    
+    docRef
+      .update({
+        ls: stdout,
+        err: err,
+        stderr,
+      })
+      .then(() => resolve({ success: true }))
+      .catch(err => reject(err));
+
+  });
 
   console.log('starting ada', pathData.repo);
   return (
