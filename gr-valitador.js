@@ -15,15 +15,19 @@ module.exports = (pathData, db, githubToken, isFirebaseEnv = true) => {
   const finalDirectory = (directory[1] + directory[2]);
 
   exec('ls /usr/local/bin', (err, stdout, stderr) => {
-    console.log(stdout);
+    console.log('usr/local/bin',stdout);
   });
 
   exec('ls /usr/bin', (err, stdout, stderr) => {
-    console.log(stdout);
+    console.log('usr/bin', stdout);
   });
 
   exec('ls -lR /user_code', (err, stdout, stderr) => {
-    console.log(stdout);
+    console.log('user_code', stdout);
+  });
+
+  exec('npm -v', (err, stdout, stderr) => {
+    console.log('npm', stdout);
   });
 
   console.log('starting ada', pathData.repo);
