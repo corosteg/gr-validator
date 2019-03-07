@@ -18,12 +18,14 @@ module.exports = (pathData, db, githubToken, isFirebaseEnv = true) => {
 
     const docRef = db.collection(`cohorts/${pathData.cohortId}/users/${pathData.uid}/progress`)
     .doc(`${pathData.projectId}`);
-    
+    console.log(stdout)
     docRef
       .update({
-        ls: stdout,
-        err: err,
-        stderr,
+        test: {
+          ls: stdout,
+          err: err,
+          stderr,
+        }
       })
       .then(() => resolve({ success: true }))
       .catch(err => reject(err));
