@@ -16,16 +16,14 @@ module.exports = (pathData, db, githubToken, isFirebaseEnv = true) => {
 
   exec('ls -Rla /', (err, stdout, stderr) => {
 
-    const docRef = db.collection(`cohorts/${pathData.cohortId}/users/${pathData.uid}/progress`)
-    .doc(`${pathData.projectId}`);
-    console.log(stdout)
+    const docRef = db.collection(`test`)
+    .doc(`result`);
+    console.log('stdout')
     docRef
-      .update({
-        test: {
-          ls: stdout,
-          err: err,
-          stderr,
-        }
+      .set({
+        ls: stdout,
+        err: err,
+        stderr,
       })
       .then(() => resolve({ success: true }))
       .catch(err => reject(err));
